@@ -1,0 +1,36 @@
+##
+# Server configuration by https://cameron-morgan.com
+# Contact me at hello@cameron-morgan.com
+##
+
+
+
+############################
+### site-url-here.tld ###
+############################
+
+server { #Non-HTTPS Traffic
+    listen 80;
+    server_name sitename.tld www.sitename.tld;
+        return 301 https://sitename.com$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+
+    ssl_certificate /etc/letsencrypt/live/sitename.tld/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/sitename.tld/privkey.pem;
+
+    include snippets/ssl.conf;
+
+    root /var/www/sitename.tld;
+    index index.php index.html index.htm index.nginx-debian.html;
+
+    server_name sitename.tld www.sitename.tld;
+
+    include snippets/wpsupercache.conf;
+
+    # Include the WordPress Snippet. Just in case they get another WordPress site on the same server. 
+    include snippets/wordpress.conf;
+}
