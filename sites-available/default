@@ -33,4 +33,7 @@ server {
 
     # Include the WordPress Snippet. Just in case they get another WordPress site on the same server. 
     include snippets/wordpress.conf;
+    
+    # If you're running CloudFlare. This sorts out your logs so it shows the right IP.
+    # include snippets/cloudflare.conf;
 }
