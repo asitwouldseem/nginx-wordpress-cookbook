@@ -19,6 +19,8 @@ server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
 
+    #include snippets/gzip.conf;
+    
     ssl_certificate /etc/letsencrypt/live/sitename.tld/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/sitename.tld/privkey.pem;
 
@@ -33,6 +35,10 @@ server {
 
     # Include the WordPress Snippet. Just in case they get another WordPress site on the same server. 
     include snippets/wordpress.conf;
+    
+    # If you're using Yoast SEO, you'll need this to let the XML sitemaps use pretty links.
+    # See: https://kb.yoast.com/kb/xml-sitemaps-nginx/
+    # include snippets/yoastseo.conf;
     
     # If you're running CloudFlare. This sorts out your logs so it shows the right IP.
     # include snippets/cloudflare.conf;
