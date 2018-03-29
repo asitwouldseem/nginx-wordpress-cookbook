@@ -69,6 +69,8 @@ server {
     #ssl_certificate_key /etc/letsencrypt/live/assets.sitename.tld/privkey.pem;
     #include snippets/ssl.conf;
     
+    server_name assets.sitename.tld;
+    
     root /var/www/site-url-here.tld/wp-content;
     
     #include snippets/assets-cookieless.conf;
