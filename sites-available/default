@@ -36,6 +36,9 @@ server {
     # Include the WordPress Snippet. Just in case they get another WordPress site on the same server. 
     include snippets/wordpress.conf;
     
+    # If you wish to install YOUR LS within your WordPress install. Uses /ls directory.
+    # include snippets/yourls.conf;
+    
     # If you're using Yoast SEO, you'll need this to let the XML sitemaps use pretty links.
     # See: https://kb.yoast.com/kb/xml-sitemaps-nginx/
     # include snippets/yoastseo.conf;
