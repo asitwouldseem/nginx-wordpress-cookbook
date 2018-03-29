@@ -43,3 +43,33 @@ server {
     # If you're running CloudFlare. This sorts out your logs so it shows the right IP.
     # include snippets/cloudflare.conf;
 }
+
+
+############################
+### assets.site-url-here.tld ###
+############################
+
+server { #Non-HTTPS Traffic
+    listen 80;
+    server_name assets.sitename.tld;
+        return 301 https://assets.sitename.com$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    
+    #Using SSL? You need a certificate to prevent mixed content issues.
+    #include snippets/gzip.conf;  
+
+    #ssl_certificate /etc/letsencrypt/live/assets.sitename.tld/fullchain.pem;
+    #ssl_certificate_key /etc/letsencrypt/live/assets.sitename.tld/privkey.pem;
+    #include snippets/ssl.conf;
+    
+    root /var/www/site-url-here.tld/wp-content;
+    
+    #include snippets/assets-cookieless.conf;
+    
+    #If you're running CloudFlare. This sorts out your logs so it shows the right IP.
+    #include snippets/cloudflare.conf;
+}
