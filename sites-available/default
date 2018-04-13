@@ -25,6 +25,8 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/sitename.tld/privkey.pem;
 
     include snippets/ssl.conf;
+    
+    ssl_trusted_certificate /etc/letsencrypt/live/sitename.tld/chain.pem;
 
     root /var/www/sitename.tld;
     index index.php index.html index.htm index.nginx-debian.html;
